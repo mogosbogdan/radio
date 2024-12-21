@@ -1,33 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tabs, Tab, Box, Typography, Button, Drawer } from "@mui/material";
 import "./App.css";
+import useAppState from "./useAppState";
 
 function App() {
-  const initialState = {
-    activeTab: 0,
-    counter: 0,
-    open: false,
-  };
+  const { state, setCounter, handleTabChange, handleClick, handleCloseDrawer } =
+    useAppState();
 
-  const [state, setState] = useState(initialState);
   const { activeTab, counter, open } = state;
-
-  const setCounter = () => {
-    setState((prevState) => ({ ...prevState, counter: counter + 1 }));
-  };
-
-  const handleTabChange = (event, newValue) => {
-    setState((prevState) => ({ ...prevState, activeTab: newValue }));
-    setState((prevState) => ({ ...prevState, counter: 0 }));
-  };
-
-  const handleClick = () => {
-    setState((prevState) => ({ ...prevState, open: !open }));
-  };
-
-  const handleCloseDrawer = () => {
-    setState(initialState);
-  };
 
   return (
     <>
@@ -50,7 +30,7 @@ function App() {
             {activeTab === 0 && (
               <TabContent
                 counter={counter}
-                setCounter={setCounter}
+                onClick={setCounter}
                 tabNumber={1}
                 handleCloseDrawer={handleCloseDrawer}
               />
@@ -58,7 +38,7 @@ function App() {
             {activeTab === 1 && (
               <TabContent
                 counter={counter}
-                setCounter={setCounter}
+                onClick={setCounter}
                 tabNumber={2}
                 handleCloseDrawer={handleCloseDrawer}
               />
@@ -70,17 +50,13 @@ function App() {
   );
 }
 
-function TabContent({ tabNumber, counter, setCounter, handleCloseDrawer }) {
+function TabContent({ tabNumber, counter, onClick, handleCloseDrawer }) {
   return (
     <Box>
       <Typography variant="h6">Tab {tabNumber} Content</Typography>
       <Typography>State: {counter}</Typography>
       <div className="mb-4">
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={() => setCounter(counter + 1)}
-        >
+        <Button fullWidth variant="contained" onClick={onClick}>
           Increment State
         </Button>
       </div>
