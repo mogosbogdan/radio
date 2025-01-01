@@ -2,7 +2,7 @@
   "name": "radio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://mogosbogdan.github.io/Dropdown",
+  "homepage": "https://mogosbogdan.github.io/radio",
   "type": "module",
   "scripts": {
     "dev": "vite",
