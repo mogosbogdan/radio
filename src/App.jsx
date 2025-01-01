@@ -8,7 +8,7 @@ function App() {
     useAppState();
 
   const { activeTab, counter, open } = state;
-
+//mod 1 
   return (
     <>
       <div className="m-3">
@@ -66,5 +66,5 @@ function TabContent({ tabNumber, counter, onClick, handleCloseDrawer }) {
     </Box>
   );
 }
-
+//mod 3
 export default App;
