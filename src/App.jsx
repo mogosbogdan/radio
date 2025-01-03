@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import TopSongs from "./TopSongs";
 import { Button } from "@mui/material";
+import TopArtists from "./TopArtists";
 
 const App = () => {
-  const [showTopSongs, setShowTopSongs] = React.useState(false);
+  const [showTopSongs, setShowTopSongs] = useState(false);
+  const [showTopArtists, setShowTopArtists] = useState(false);
+
   const handleTopSongs = () => {
     setShowTopSongs(!showTopSongs);
+  };
+
+  const handleTopArtists = () => {
+    setShowTopArtists(!showTopArtists);
   };
 
   return (
@@ -17,7 +24,15 @@ const App = () => {
       >
         show top songs
       </Button>
-      {showTopSongs && <TopSongs />}{" "}
+      <Button
+        variant="contained"
+        onClick={handleTopArtists}
+        style={{ margin: "20px" }}
+      >
+        show top artists
+      </Button>
+      {showTopSongs && <TopSongs />}
+      {showTopArtists && <TopArtists />}
     </div>
   );
 };
