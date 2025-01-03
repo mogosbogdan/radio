@@ -2,7 +2,7 @@ import React from "react";
 import data from "./db/StreamingHistory_music_0.json";
 import { formatTime } from "./utils";
 
-const TopSongs = () => {
+const TopSongs = ({ numberOfSongs }) => {
   const combinedData = React.useMemo(() => {
     return data.reduce((acc, current) => {
       const existing = acc.find((item) => item.trackName === current.trackName);
@@ -24,14 +24,14 @@ const TopSongs = () => {
           margin: "10px",
         }}
       >
-        Top 100 Songs
+        Top {numberOfSongs} Songs
       </h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {sortedData.slice(0, 100).map((item, index) => {
+        {sortedData.slice(0, numberOfSongs).map((item, index) => {
           return (
             <div
               style={{
-                flex: "1 0 15%", // Adjust the percentage to control the number of items per row
+                flex: "1 0 17%", // Adjust the percentage to control the number of items per row
                 margin: "10px",
                 boxSizing: "border-box",
               }}

@@ -2,7 +2,7 @@ import React from "react";
 import data from "./db/StreamingHistory_music_0.json";
 import { formatTime } from "./utils";
 
-const TopArtists = () => {
+const TopArtists = ({ numberOfArtists }) => {
   const artistPlayTime = {};
 
   data.forEach((entry) => {
@@ -18,7 +18,7 @@ const TopArtists = () => {
 
   const topArtists = Object.entries(artistPlayTime)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 100)
+    .slice(0, numberOfArtists)
     .map(([artist]) => artist);
 
   return (
@@ -28,7 +28,7 @@ const TopArtists = () => {
           margin: "10px",
         }}
       >
-        Top 100 Artists
+        Top {numberOfArtists} Artists
       </h1>
       <ul style={{ display: "flex", flexWrap: "wrap" }}>
         {topArtists.map((artist, index) => (
@@ -37,7 +37,7 @@ const TopArtists = () => {
               border: "1px solid black",
               padding: "10px",
               borderRadius: "6px",
-              flex: "1 0 15%", // Adjust the percentage to control the number of items per row
+              flex: "1 0 17%", // Adjust the percentage to control the number of items per row
               margin: "10px",
               boxSizing: "border-box",
             }}
